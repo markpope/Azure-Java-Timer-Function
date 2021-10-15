@@ -1,16 +1,16 @@
 # Create a Maven project from an Azure archetype
 
-### Consider changing the <b>bold</b> properties below  before executing to create the maven project
+### Consider changing groupId and package below  before executing to create the maven project
 
 ```
 mvn -DarchetypeGroupId=com.microsoft.azure \
     -DarchetypeArtifactId=azure-functions-archetype \
     -DarchetypeVersion=1.40 \
     -DarchetypeRepository=https://repo.maven.apache.org/maven2/ \
-    -DgroupId=<b>com.pope</b> \
+    -DgroupId=com.pope \
     -DartifactId=JavaFunction \
     -Dversion=1.0 \
-    -Dpackage=<b>com.pope.javafunction</b>  \
+    -Dpackage=com.pope.javafunction  \
     -DresourceGroup=java-functions-group \
     -DappName=$(artifactId) \
     -DjavaVersion=8 \
@@ -64,14 +64,14 @@ public class Function {
 	 */
 	@FunctionName("Function")
 	public void run(
-					@TimerTrigger(name = "timerInfo", schedule = "0 * * * * *") String timerInfo,
-					final ExecutionContext context
+		@TimerTrigger(name = "timerInfo", schedule = "0 * * * * *") String timerInfo,
+		final ExecutionContext context
 	) {
 
 		SecretClient secretClient = new SecretClientBuilder()
-						.vaultUrl("https:// <Your KeyVault> .vault.azure.net/")
-						.credential(new DefaultAzureCredentialBuilder().build())
-						.buildClient();
+			.vaultUrl("https:// <Your KeyVault> .vault.azure.net/")
+			.credential(new DefaultAzureCredentialBuilder().build())
+			.buildClient();
 		String token = secretClient.getSecret("<Secret Name>").getValue();
 
 		context.getLogger().info("" + token);
