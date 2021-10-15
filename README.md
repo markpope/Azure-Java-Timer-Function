@@ -1,4 +1,8 @@
-# Create a Maven project from an Azure archetype
+# Azure Java Timer Function that accesses a Key Vault
+
+Functions are great for exposing microservice APIs, but they can be used to schedule business logic as well by using @TimerTrigger. This annotation accepts a cron formatted schedule that defines when it should run. In this project  several REST APIs are made to the same host in a class referenced from an maven included jar. The API token should not be hard coded in my jar or the Azure Function. It should be stored in a Key Vault and accessed programatically. Azure Functions written in .NET/C# can access Key Vaults without extra code.
+
+## Create a Maven project from an Azure archetype
 
 ### Consider changing groupId and package below  before executing to create the maven project
 
